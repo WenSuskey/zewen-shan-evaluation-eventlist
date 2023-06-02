@@ -251,6 +251,7 @@ class EventsController{
         this.model = model
         this.view = view
         this.initController()
+        this.adding = false
     }
     async initController(){
         this.setUpEvents()
@@ -266,15 +267,24 @@ class EventsController{
     }
     setUpaddEvents(){
         this.view.addEventBtn.addEventListener("click",()=>{
-            const createElement = this.view.createAddElement(0)
-            this.view.appendAddEvent( this.view.createAddElement(0))
+            if(this.adding){
+                alert("You are adding now!")
+            }
+            else{
+                this.adding = true
+                const createElement = this.view.createAddElement(0)
+                this.view.appendAddEvent( this.view.createAddElement(0))
+            }
+            
         })
     }
     setUpPostEvent(){
         this.view.eventsList.addEventListener("click",(e)=>{
             if(e.target.classList.contains('save-btn')||e.target.classList.contains('save-svg')){
+                
                 let value =this.view.findValue()
                 if(value.title!=='' && value.startDate!=='' && value.endDate!==''){
+                    this.adding = false
                     const newEvent = {eventName: value.title, startDate:value.startDate, endDate: value.endDate}
                     this.model.postEvent(newEvent).then(newEvent =>this.view.appendEvent(newEvent)).then(this.view.deleteAdd())
                 }
@@ -284,6 +294,7 @@ class EventsController{
             
             }
             else if(e.target.classList.contains('cancel-btn')||e.target.classList.contains('cancel-svg')){
+                this.adding = false
                 this.view.deleteAdd()
             }
         })
