@@ -113,6 +113,14 @@ class EventsView{
         console.log({title,startDate,endDate})
         return {title,startDate,endDate}
     }
+
+    findUpdateValue(){
+        const title = document.getElementById(`input-title`).value
+        const startDate = document.getElementById(`add-startDate`).value
+        const endDate = document.getElementById(`add-endDate`).value
+        console.log({title,startDate,endDate})
+        return {title,startDate,endDate}
+    }
     deleteAdd(){
         const element = document.getElementById(`add-event`)
         element.remove()
@@ -132,7 +140,7 @@ class EventsView{
             <input type = "date" id="update-strat-${id}"/> 
             <input type = "date" id="end-strat-${id}"/> 
             <div>
-                <button id="update-save">add</button>
+                <button class = "update-save" update-save-id="${id}">add</button>
                 <button id="update-cancel">cancel</button>
             </div>
         </div>`
@@ -302,10 +310,16 @@ class EventsController{
                 const updateId = e.target.getAttribute("edit-id")
                 console.log(updateId)
                 this.view.updateEventHandeler(updateId)
-    
+            }
+            else if(e.target.classList.contains('update-save')){
+                const updateId = e.target.getAttribute("update-save-id")
+                console.log(updateId)
+                // this.view.updateEventHandeler(updateId)
             }
         })
+        
     }
+    
 }
 
 const model = new EventsModel()
