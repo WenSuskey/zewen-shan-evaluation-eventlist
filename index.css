@@ -22,7 +22,7 @@ html,body{
     border-radius: 0.4rem;
     padding: 1rem;
 }
-.edit-btn,.delete-btn,.save-btn,.cancel-btn{
+.edit-btn,.delete-btn,.save-btn,.cancel-btn,.update-save,.goBack-update{
     width: 2.5rem;
     margin: 0.2rem;
 }
