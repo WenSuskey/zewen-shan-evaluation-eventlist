@@ -112,12 +112,13 @@ class EventsView{
         const endDate = document.getElementById(`add-endDate`).value
         console.log({title,startDate,endDate})
         return {title,startDate,endDate}
+        
     }
 
     findUpdateValue(id){
-        const title = document.getElementById(`input-title`).value
-        const startDate = document.getElementById(`add-startDate`).value
-        const endDate = document.getElementById(`add-endDate`).value
+        const title = document.getElementById(`update-title-${id}`).value
+        const startDate = document.getElementById(`update-strat-${id}`).value
+        const endDate = document.getElementById(`update-end-${id}`).value
         console.log({title,startDate,endDate})
         return {title,startDate,endDate}
     }
@@ -138,7 +139,7 @@ class EventsView{
         <div class="event" id="event-${id}">
             <input type = "text" id="update-title-${id}"/>
             <input type = "date" id="update-strat-${id}"/> 
-            <input type = "date" id="end-strat-${id}"/> 
+            <input type = "date" id="update-end-${id}"/> 
             <div>
                 <button class = "update-save" update-save-id="${id}">add</button>
                 <button id="update-cancel">cancel</button>
