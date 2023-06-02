@@ -114,7 +114,7 @@ class EventsView{
         return {title,startDate,endDate}
     }
 
-    findUpdateValue(){
+    findUpdateValue(id){
         const title = document.getElementById(`input-title`).value
         const startDate = document.getElementById(`add-startDate`).value
         const endDate = document.getElementById(`add-endDate`).value
