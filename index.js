@@ -113,7 +113,6 @@ class EventsView{
         const title = document.getElementById(`input-title`).value
         const startDate = document.getElementById(`add-startDate`).value
         const endDate = document.getElementById(`add-endDate`).value
-        console.log({title,startDate,endDate})
         return {title,startDate,endDate}
         
     }
@@ -122,7 +121,6 @@ class EventsView{
         const title = document.getElementById(`update-title-${id}`).value
         const startDate = document.getElementById(`update-strat-${id}`).value
         const endDate = document.getElementById(`update-end-${id}`).value
-        console.log({title,startDate,endDate})
         return {title,startDate,endDate}
     }
     updateRender(newEvent){
@@ -147,7 +145,6 @@ class EventsView{
             </button>
         </div>
         `
-        console.log(this.eventsList)
 
     }
     deleteAdd(){
@@ -277,7 +274,6 @@ class EventsController{
         this.view.eventsList.addEventListener("click",(e)=>{
             if(e.target.classList.contains('save-btn')||e.target.classList.contains('save-svg')){
                 let value =this.view.findValue()
-                console.log(value)
                 if(value.title!=='' && value.startDate!=='' && value.endDate!==''){
                     const newEvent = {eventName: value.title, startDate:value.startDate, endDate: value.endDate}
                     this.model.postEvent(newEvent).then(newEvent =>this.view.appendEvent(newEvent)).then(this.view.deleteAdd())
@@ -296,7 +292,6 @@ class EventsController{
         this.view.eventsList.addEventListener("click",(e)=>{
             if(e.target.classList.contains('delete-btn')||e.target.classList.contains('delete-svg')){
                 const removeId = e.target.getAttribute("delete-id")
-                console.log(removeId)
                 this.model.deleteEvent(removeId).then(
                     ()=>{this.view.deleteRenderEvent(removeId)}
                 )
@@ -305,7 +300,6 @@ class EventsController{
     }
     setUpUpdateEvent(){
         this.view.eventsList.addEventListener("click",(e)=>{
-            console.log(e.target.classList)
             if(e.target.classList.contains('edit-btn')||e.target.classList.contains('edit-svg')){
                 const updateId = e.target.getAttribute("edit-id")
                 this.view.updateEventHandeler(updateId, this.model.getEventById(updateId))
@@ -323,7 +317,6 @@ class EventsController{
             }
             else if(e.target.classList.contains('goBack-update')||e.target.classList.contains('goBack-svg')){
                 const updateId = e.target.getAttribute("goback-update-id")
-                console.log(updateId)
                 this.view.updateRender(this.model.getEventById(updateId))
             
             }

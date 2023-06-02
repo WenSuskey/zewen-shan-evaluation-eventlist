@@ -4,7 +4,7 @@ html,body{
 }
 .add-event-app{
     display: flex;
-    width: 50rem;
+    width: 60rem;
     margin: 5rem auto;
     flex-direction: column;
 }
@@ -16,7 +16,12 @@ html,body{
     color: white;
     border-radius: 0.4rem;
     border: none;
+    cursor: pointer;
 }
+.add-event-btn:hover{
+    background-color: #4caf50;
+}
+
 .event-list{
     border: 0.2rem solid #e6e2d3;
     border-radius: 0.4rem;
@@ -25,6 +30,22 @@ html,body{
 .edit-btn,.delete-btn,.save-btn,.cancel-btn,.update-save,.goBack-update{
     width: 2.5rem;
     margin: 0.2rem;
+    cursor: pointer;
+}
+.edit-btn,.save-btn,.update-save{
+    width: 2.5rem;
+    margin: 0.2rem;
+    background-color: #008cba;
+    color: white;
+    border: none;
+}
+.delete-btn,.cancel-btn,.goBack-update{
+    width: 2.5rem;
+    margin: 0.2rem;
+    background-color: #c94c4c;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
 }
 .event-actions{
     text-align: center;
@@ -36,6 +57,7 @@ html,body{
     display: flex;
     justify-content: space-around;
     margin-bottom: 1rem;
+    border-radius: 0.3rem;
 
 }
 .event-list_head{
@@ -44,5 +66,8 @@ html,body{
 }
 
 input{
-    width: 6em;
+    width: 7em;
+}
+.title,.start-date,.end-date{
+    width:6rem
 }
