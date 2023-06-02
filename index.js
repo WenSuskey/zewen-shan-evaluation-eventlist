@@ -76,6 +76,9 @@ class EventsModel{
         const todo = await API.updateEvent(id,newEvent)
         return todo
    }
+   getEventById(id){
+    return this.#events.find(element => element.id === parseInt(id))
+   }
 }
 
 //View**********************************************************
@@ -159,17 +162,16 @@ class EventsView{
     }
 
 
-    updateEventHandeler(id){
+    updateEventHandeler(id,curEvent){
         const element = document.getElementById(`event-${id}`)
-        
         element.innerHTML= `
 
-            <input type = "text" id="update-title-${id}"/>
-            <input type = "date" id="update-strat-${id}"/> 
-            <input type = "date" id="update-end-${id}"/> 
+            <input type = "text" id="update-title-${id}" placeholder="${curEvent.eventName}"/>
+            <input type = "date" id="update-strat-${id}" value="${curEvent.startDate}"/> 
+            <input type = "date" id="update-end-${id}" value="${curEvent.endDate}"/> 
             <div>
                 <button class = "update-save" update-save-id="${id}">add</button>
-                <button id="update-cancel">cancel</button>
+                <button class = "cancel-update" cancel-update-id="${id}">cancel</button>
             </div>
         `
     }
@@ -336,7 +338,7 @@ class EventsController{
         this.view.eventsList.addEventListener("click",(e)=>{
             if(e.target.classList.contains('edit-btn')){
                 const updateId = e.target.getAttribute("edit-id")
-                this.view.updateEventHandeler(updateId)
+                this.view.updateEventHandeler(updateId, this.model.getEventById(updateId))
             }
             else if(e.target.classList.contains('update-save')){
                 const updateId = e.target.getAttribute("update-save-id")
@@ -348,6 +350,11 @@ class EventsController{
                 else{
                     //add alr
                 }
+            }
+            else if(e.target.classList.contains('cancel-update')){
+                const updateId = e.target.getAttribute("cancel-update-id")
+                this.view.updateRender(this.model.getEventById(updateId))
+            
             }
         })
         
